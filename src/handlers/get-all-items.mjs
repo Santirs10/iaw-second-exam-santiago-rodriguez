@@ -24,9 +24,10 @@ export const getAllItemsHandler = async (event) => {
     // https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Scan.html
     var params = {
         TableName : tableName
+        key: disponible
     };
 
-    if (disponible==true){
+    if (disponible===true){
         try {
             const data = await ddbDocClient.send(new ScanCommand(params));
             var items = data.Items;
