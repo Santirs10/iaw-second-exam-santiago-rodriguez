@@ -36,7 +36,7 @@ export const getAllItemsHandler = async (event) => {
     }
     let libreria=[];
     for (const libro of items){
-        if(libro.disponible==true){
+        if(libro.disponible===true){
             libreria.push(libro)
         }
     }
