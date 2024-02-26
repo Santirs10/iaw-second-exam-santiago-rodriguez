@@ -26,17 +26,26 @@ export const getAllItemsHandler = async (event) => {
         TableName : tableName
     };
 
-    try {
-        const data = await ddbDocClient.send(new ScanCommand(params));
-        var items = data.Items;
-    } catch (err) {
-        console.log("Error", err);
+    if (disponible==true){
+        try {
+            const data = await ddbDocClient.send(new ScanCommand(params));
+            var items = data.Items;
+        } catch (err) {
+            console.log("Error", err);
+        }
+        const response = {
+            statusCode: 200,
+            body: JSON.stringify(items)
+        }
+
+    }else{
+        return {
+            statusCode: 403,
+            body: "Error en la búsqueda"
+        }
     }
 
-    const response = {
-        statusCode: 200,
-        body: JSON.stringify(items)
-    };
+    
 
     // All log statements are written to CloudWatch
     console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`);
