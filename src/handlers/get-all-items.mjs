@@ -24,7 +24,7 @@ export const getAllItemsHandler = async (event) => {
     // https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Scan.html
     var params = {
         TableName : tableName
-        Key: {disponible : disponible}
+        Key: { disponible : disponible },
     };
 
     if (disponible===true){
