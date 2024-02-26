@@ -25,12 +25,20 @@ export const getAllItemsHandler = async (event) => {
     var params = {
         TableName : tableName
     };
+    
+
 
     try {
         const data = await ddbDocClient.send(new ScanCommand(params));
         var items = data.Items;
     } catch (err) {
         console.log("Error", err);
+    }
+    let libreria=[];
+    for (const libro of items){
+        if(libro.disponible===true){
+            libreria.push(libro)
+        }
     }
 
     const response = {
